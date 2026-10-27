@@ -101,8 +101,8 @@ First results (Oct 27, 2026). `claude-code` is Claude Code standing in for the M
 | SAM 3.1 (layout judge) | to plug in |
 
 ## Team
-
-- Samir ([LM62bc](https://github.com/LM62bc))
+- Ahmed (([LM62bc](https://github.com/LM62bc))
+- Samir ([samir-tmlk](https://github.com/samir-tmlk))
 - Mossa'ab ([M-Jel](https://github.com/M-Jel))
 - Reda ([Redaelm47](https://github.com/Redaelm47)), help on evaluation
 
