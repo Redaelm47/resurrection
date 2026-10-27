@@ -64,13 +64,29 @@ resurrection/
   replay.py     redo the clicks with Playwright, capture both sides
   score.py      look (SSIM), layout (IoU), journey
   loop.py       the agent loop
-  cli.py        resurrect run | frames | score | build | film
+  bench.py      Resurrection Bench (assemble tasks, score entries)
+  cli.py        resurrect run | frames | score | build | film | bench
+bench/          the benchmark: real 1999 sites, ground truth, entries
 examples/       a small 2004-style site to test with
 samples/        your videos (not committed)
 tests/
 ```
 
 **Contract for generated apps:** every component keeps `data-id="<component id>"` from the spec, and `<body data-screen="...">` always names the visible screen. The replay depends on both.
+
+## Benchmark
+
+[Resurrection Bench](bench/README.md) scores any system on real 1999 websites from the Wayback Machine. A system only gets the video; we keep the real pages, click positions and element boxes as ground truth.
+
+| System | fema-1999 | nasa-1999 | noaa-1999 | Look | Layout | Journey | **Score** |
+|---|---|---|---|---|---|---|---|
+| blank | 0% | 0% | 0% | 0% | 0% | 0% | **0%** |
+| screenshot | 20% | 19% | 20% | 32% | 1% | 33% | **20%** |
+| claude-code | 75% | 81% | 80% | 82% | 65% | 100% | **79%** |
+
+First results (Oct 27, 2026). `claude-code` is Claude Code standing in for the Meta models while we save API credits: it got only the video, cropped images from its frames and wrote the pages. Meta model entries come next.
+
+![Original (left) and resurrected (right), every step of every task](bench/side-by-side.jpg)
 
 ## Status
 

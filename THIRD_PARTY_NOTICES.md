@@ -26,6 +26,10 @@ Playwright downloads its own Chromium build, which ships with its own license fi
 
 Images produced by Muse Image are covered by the same terms as the model that made them.
 
+## Benchmark captures
+
+`bench/data/` holds screenshots of nasa.gov, fema.gov and noaa.gov as archived in January and February 1999 by the [Internet Archive](https://web.archive.org/). Works of the US federal government are in the public domain (17 U.S.C. 105). If any item turns out to belong to a third party, tell us and we will remove it.
+
 ## Sample apps
 
 The videos we resurrect are not part of this repository and keep their own rights. We only use our own old projects, open source apps, or sites whose owner agreed. See [samples/README.md](samples/README.md).

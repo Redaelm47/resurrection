@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from . import bench
 from .loop import resurrect
 from .providers import READERS, WRITERS
 from .replay import dump_frames, film, replay
@@ -44,6 +45,12 @@ def main() -> None:
     rec.add_argument("app", type=Path)
     rec.add_argument("video", type=Path)
 
+    b = sub.add_parser("bench", help="Resurrection Bench: assemble the tasks, score every entry")
+    b.add_argument("action", choices=["assemble", "run"])
+    b.add_argument("--data", type=Path, default=Path("bench/data"))
+    b.add_argument("--entries", type=Path, default=Path("bench/entries"))
+    b.add_argument("--out", type=Path, default=Path("out/bench"))
+
     args = parser.parse_args()
     if args.cmd == "run":
         resurrect(args.video, READERS[args.reader](), WRITERS[args.writer](), args.out / args.video.stem,
@@ -64,6 +71,13 @@ def main() -> None:
         print(args.out)
     elif args.cmd == "film":
         print(film(args.app, AppSpec.load(args.spec), args.video))
+    elif args.cmd == "bench":
+        tasks = sorted(d for d in args.data.iterdir() if d.is_dir())
+        if args.action == "assemble":
+            for d in tasks:
+                print(bench.assemble(d))
+        else:
+            print(bench.run(tasks, args.entries, args.out))
 
 
 if __name__ == "__main__":
