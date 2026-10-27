@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.env
+.env.*
+.DS_Store
+out/
+# Videos stay local unless we own them: see samples/README.md
+samples/*
+!samples/README.md

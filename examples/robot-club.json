@@ -1,0 +1,47 @@
+{
+  "name": "Robot Club 2004",
+  "viewport": [800, 600],
+  "screens": [
+    {
+      "id": "home",
+      "title": "Welcome",
+      "background": "#000080",
+      "components": [
+        {"id": "title", "type": "text", "box": [40, 30, 720, 60], "text": "Welcome to the Robot Club!", "style": {"color": "#ffff00", "font-size": "36px", "font-weight": "bold"}},
+        {"id": "banner", "type": "image", "box": [40, 110, 720, 220], "style": {"background-color": "#808080"}},
+        {"id": "btn-news", "type": "button", "box": [40, 360, 200, 40], "text": "News", "goto": "news"},
+        {"id": "btn-guestbook", "type": "button", "box": [260, 360, 200, 40], "text": "Guestbook", "goto": "guestbook"},
+        {"id": "visitors", "type": "text", "box": [40, 540, 720, 24], "text": "You are visitor number 004217", "style": {"color": "#00ff00"}}
+      ]
+    },
+    {
+      "id": "news",
+      "title": "News",
+      "background": "#ffffcc",
+      "components": [
+        {"id": "news-title", "type": "text", "box": [40, 30, 720, 40], "text": "Latest news", "style": {"font-size": "28px", "font-weight": "bold"}},
+        {"id": "news-body", "type": "text", "box": [40, 90, 720, 200], "text": "Our robot climbed the stairs at the school fair."},
+        {"id": "news-back", "type": "link", "box": [40, 540, 120, 24], "text": "Back home", "goto": "home"}
+      ]
+    },
+    {
+      "id": "guestbook",
+      "title": "Guestbook",
+      "background": "#c0c0c0",
+      "components": [
+        {"id": "gb-title", "type": "text", "box": [40, 30, 720, 40], "text": "Sign our guestbook", "style": {"font-size": "28px", "font-weight": "bold"}},
+        {"id": "gb-name", "type": "text_field", "box": [40, 100, 320, 32], "text": "Your name"},
+        {"id": "gb-message", "type": "text_field", "box": [40, 150, 720, 120], "text": "Your message"},
+        {"id": "gb-sign", "type": "button", "box": [40, 290, 160, 40], "text": "Sign"},
+        {"id": "gb-back", "type": "link", "box": [40, 540, 120, 24], "text": "Back home", "goto": "home"}
+      ]
+    }
+  ],
+  "journey": [
+    {"t": 0.0, "screen": "home"},
+    {"t": 1.5, "screen": "guestbook", "action": {"type": "click", "target": "btn-guestbook"}},
+    {"t": 3.0, "screen": "guestbook", "action": {"type": "type", "target": "gb-name", "text": "Samir"}},
+    {"t": 4.5, "screen": "home", "action": {"type": "click", "target": "gb-back"}},
+    {"t": 6.0, "screen": "news", "action": {"type": "click", "target": "btn-news"}}
+  ]
+}

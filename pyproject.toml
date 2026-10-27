@@ -1,0 +1,27 @@
+[project]
+name = "resurrection"
+version = "0.1.0"
+description = "Bring an old app back to life from a video of someone using it."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy",
+  "scipy",
+  "scikit-image",
+  "opencv-python-headless",
+  "playwright",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+resurrect = "resurrection.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["resurrection"]
