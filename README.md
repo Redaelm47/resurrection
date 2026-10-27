@@ -76,6 +76,8 @@ tests/
 
 ## Benchmark
 
+**[See the results page by page](https://redaelm47.github.io/resurrection/bench/)**: original and rebuilt screens side by side, and the rebuilt sites to click through.
+
 [Resurrection Bench](bench/README.md) scores any system on real 1999 websites from the Wayback Machine. A system only gets the video; we keep the real pages, click positions and element boxes as ground truth.
 
 | System | fema-1999 | nasa-1999 | noaa-1999 | Look | Layout | Journey | **Score** |

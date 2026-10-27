@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resurrection Bench</title>
+<style>
+  :root { --ink: #16181d; --muted: #6b7280; --line: #e5e7eb; --accent: #2563eb; --bg: #ffffff; --soft: #f6f7f9; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1120px; margin: 0 auto; padding: 48px 16px 80px; }
+  h1 { font-size: 32px; margin: 0 0 8px; letter-spacing: -0.02em; }
+  h2 { font-size: 22px; margin: 56px 0 4px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .muted { color: var(--muted); font-weight: 400; font-size: 14px; }
+  .lead { color: var(--muted); max-width: 720px; margin: 0 0 32px; }
+  a { color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: right; padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; white-space: normal; }
+  th { font-weight: 600; color: var(--muted); font-size: 13px; }
+  tr.hl td { background: var(--soft); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .badge { background: var(--ink); color: #fff; border-radius: 999px; padding: 2px 10px; font-size: 14px; }
+  .links { margin: 0 0 16px; font-size: 14px; }
+  .step { border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 16px 0; }
+  .head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .n { width: 24px; height: 24px; border-radius: 50%; background: var(--soft); display: inline-grid; place-items: center; font-size: 13px; }
+  .scores { margin-left: auto; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  figure { margin: 0; }
+  figure img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 6px; }
+  figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  ul { padding-left: 20px; }
+  @media (max-width: 700px) { .pair { grid-template-columns: 1fr; } .scores { margin-left: 0; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Resurrection Bench</h1>
+  <p class="lead">Three real websites from 1999, archived by the Wayback Machine. A system gets only a short video of someone clicking through each site, and must rebuild a working site. We then click the rebuilt site at the same places and compare every screen with the real pages.</p>
+
+  <div class="scroll"><table>
+    <tr><th>System</th><th>NASA</th><th>FEMA</th><th>NOAA</th><th>Look</th><th>Layout</th><th>Journey</th><th>Score</th></tr>
+    <tr><td>Blank page</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td><b>0%</b></td></tr><tr><td>First frame pasted as one image</td><td>19%</td><td>20%</td><td>20%</td><td>32%</td><td>1%</td><td>33%</td><td><b>20%</b></td></tr><tr class=hl><td>Claude Code, from the video only</td><td>81%</td><td>75%</td><td>80%</td><td>82%</td><td>65%</td><td>100%</td><td><b>79%</b></td></tr>
+  </table></div>
+  <ul class="muted">
+    <li><b>Look</b>: pixel similarity with the real page. 0 % means no better than a blank page.</li>
+    <li><b>Layout</b>: the real links and images are there, at the same place and size.</li>
+    <li><b>Journey</b>: each click opens the right page.</li>
+    <li>The two first rows are reference points: an empty page, and a cheat that pastes the first video frame as one picture (it looks right until you click).</li>
+  </ul>
+  
+  <section>
+    <h2>NASA <span class="muted">nasa.gov, January 1999</span> <span class="badge">81%</span></h2>
+    <p class="links"><a href="data/nasa-1999/video.mp4">Input video</a> · <a href="entries/claude-code/nasa-1999/index.html">Try the recreated site</a></p>
+    
+    <div class="step">
+      <div class="head"><span class="n">1</span><b>Home page</b><span class="muted">Start</span>
+        <span class="scores">look 83% · layout 74% · journey ✓</span></div>
+      <div class="pair">
+        <figure><a href="https://web.archive.org/web/19990116233500if_/http://nasa.gov/"><img src="compare/nasa-1999_0_original.jpg" alt="Original Home page" loading="lazy"></a><figcaption>Original (1999, Wayback Machine) <a href="https://web.archive.org/web/19990116233500if_/http://nasa.gov/">open</a></figcaption></figure>
+        <figure><a href="entries/claude-code/nasa-1999/index.html"><img src="compare/nasa-1999_0_recreated.jpg" alt="Recreated Home page" loading="lazy"></a><figcaption>Recreated from the video <a href="entries/claude-code/nasa-1999/index.html">open</a></figcaption></figure>
+      </div>
+    </div>
+    <div class="step">
+      <div class="head"><span class="n">2</span><b>Multimedia Gallery</b><span class="muted">Click at (512, 679)</span>
+        <span class="scores">look 86% · layout 65% · journey ✓</span></div>
+      <div class="pair">
+        <figure><a href="https://web.archive.org/web/19990218132306if_/http://www.nasa.gov/gallery/index.html"><img src="compare/nasa-1999_1_original.jpg" alt="Original Multimedia Gallery" loading="lazy"></a><figcaption>Original (1999, Wayback Machine) <a href="https://web.archive.org/web/19990218132306if_/http://www.nasa.gov/gallery/index.html">open</a></figcaption></figure>
+        <figure><a href="entries/claude-code/nasa-1999/gallery.html"><img src="compare/nasa-1999_1_recreated.jpg" alt="Recreated Multimedia Gallery" loading="lazy"></a><figcaption>Recreated from the video <a href="entries/claude-code/nasa-1999/gallery.html">open</a></figcaption></figure>
+      </div>
+    </div>
+    <div class="step">
+      <div class="head"><span class="n">3</span><b>Video Gallery</b><span class="muted">Click at (402, 314)</span>
+        <span class="scores">look 83% · layout 69% · journey ✓</span></div>
+      <div class="pair">
+        <figure><a href="https://web.archive.org/web/19990219082241if_/http://www.nasa.gov/gallery/video/index.html"><img src="compare/nasa-1999_2_original.jpg" alt="Original Video Gallery" loading="lazy"></a><figcaption>Original (1999, Wayback Machine) <a href="https://web.archive.org/web/19990219082241if_/http://www.nasa.gov/gallery/video/index.html">open</a></figcaption></figure>
+        <figure><a href="entries/claude-code/nasa-1999/video.html"><img src="compare/nasa-1999_2_recreated.jpg" alt="Recreated Video Gallery" loading="lazy"></a><figcaption>Recreated from the video <a href="entries/claude-code/nasa-1999/video.html">open</a></figcaption></figure>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>FEMA <span class="muted">fema.gov, January 1999</span> <span class="badge">75%</span></h2>
+    <p class="links"><a href="data/fema-1999/video.mp4">Input video</a> · <a href="entries/claude-code/fema-1999/index.html">Try the recreated site</a></p>
+    
+    <div class="step">
+      <div class="head"><span class="n">1</span><b>Home page</b><span class="muted">Start</span>
+        <span class="scores">look 74% · layout 78% · journey ✓</span></div>
+      <div class="pair">
+        <figure><a href="https://web.archive.org/web/19990116232925if_/http://fema.gov/"><img src="compare/fema-1999_0_original.jpg" alt="Original Home page" loading="lazy"></a><figcaption>Original (1999, Wayback Machine) <a href="https://web.archive.org/web/19990116232925if_/http://fema.gov/">open</a></figcaption></figure>
+        <figure><a href="entries/claude-code/fema-1999/index.html"><img src="compare/fema-1999_0_recreated.jpg" alt="Recreated Home page" loading="lazy"></a><figcaption>Recreated from the video <a href="entries/claude-code/fema-1999/index.html">open</a></figcaption></figure>
+      </div>
+    </div>
+    <div class="step">
+      <div class="head"><span class="n">2</span><b>FEMA for Kids</b><span class="muted">Click at (60, 296)</span>
+        <span class="scores">look 80% · layout 44% · journey ✓</span></div>
+      <div class="pair">
+        <figure><a href="https://web.archive.org/web/19990128114640if_/http://www.fema.gov/KIDS/"><img src="compare/fema-1999_1_original.jpg" alt="Original FEMA for Kids" loading="lazy"></a><figcaption>Original (1999, Wayback Machine) <a href="https://web.archive.org/web/19990128114640if_/http://www.fema.gov/KIDS/">open</a></figcaption></figure>
+        <figure><a href="entries/claude-code/fema-1999/kids.html"><img src="compare/fema-1999_1_recreated.jpg" alt="Recreated FEMA for Kids" loading="lazy"></a><figcaption>Recreated from the video <a href="entries/claude-code/fema-1999/kids.html">open</a></figcaption></figure>
+      </div>
+    </div>
+    <div class="step">
+      <div class="head"><span class="n">3</span><b>Main Icons</b><span class="muted">Click at (950, 495)</span>
+        <span class="scores">look 91% · layout 46% · journey ✓</span></div>
+      <div class="pair">
+        <figure><a href="https://web.archive.org/web/19990117064112if_/http://www.fema.gov/kids/icons.htm"><img src="compare/fema-1999_2_original.jpg" alt="Original Main Icons" loading="lazy"></a><figcaption>Original (1999, Wayback Machine) <a href="https://web.archive.org/web/19990117064112if_/http://www.fema.gov/kids/icons.htm">open</a></figcaption></figure>
+        <figure><a href="entries/claude-code/fema-1999/kids2.html"><img src="compare/fema-1999_2_recreated.jpg" alt="Recreated Main Icons" loading="lazy"></a><figcaption>Recreated from the video <a href="entries/claude-code/fema-1999/kids2.html">open</a></figcaption></figure>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>NOAA <span class="muted">noaa.gov, January 1999</span> <span class="badge">80%</span></h2>
+    <p class="links"><a href="data/noaa-1999/video.mp4">Input video</a> · <a href="entries/claude-code/noaa-1999/index.html">Try the recreated site</a></p>
+    
+    <div class="step">
+      <div class="head"><span class="n">1</span><b>Home page</b><span class="muted">Start</span>
+        <span class="scores">look 88% · layout 80% · journey ✓</span></div>
+      <div class="pair">
+        <figure><a href="https://web.archive.org/web/19990117004255if_/http://noaa.gov/"><img src="compare/noaa-1999_0_original.jpg" alt="Original Home page" loading="lazy"></a><figcaption>Original (1999, Wayback Machine) <a href="https://web.archive.org/web/19990117004255if_/http://noaa.gov/">open</a></figcaption></figure>
+        <figure><a href="entries/claude-code/noaa-1999/index.html"><img src="compare/noaa-1999_0_recreated.jpg" alt="Recreated Home page" loading="lazy"></a><figcaption>Recreated from the video <a href="entries/claude-code/noaa-1999/index.html">open</a></figcaption></figure>
+      </div>
+    </div>
+    <div class="step">
+      <div class="head"><span class="n">2</span><b>Explore NOAA</b><span class="muted">Click at (470, 317)</span>
+        <span class="scores">look 83% · layout 87% · journey ✓</span></div>
+      <div class="pair">
+        <figure><a href="https://web.archive.org/web/19990221233029if_/http://www.noaa.gov/explore.htm"><img src="compare/noaa-1999_1_original.jpg" alt="Original Explore NOAA" loading="lazy"></a><figcaption>Original (1999, Wayback Machine) <a href="https://web.archive.org/web/19990221233029if_/http://www.noaa.gov/explore.htm">open</a></figcaption></figure>
+        <figure><a href="entries/claude-code/noaa-1999/explore.html"><img src="compare/noaa-1999_1_recreated.jpg" alt="Recreated Explore NOAA" loading="lazy"></a><figcaption>Recreated from the video <a href="entries/claude-code/noaa-1999/explore.html">open</a></figcaption></figure>
+      </div>
+    </div>
+    <div class="step">
+      <div class="head"><span class="n">3</span><b>NOAA History</b><span class="muted">Click at (653, 618)</span>
+        <span class="scores">look 72% · layout 41% · journey ✓</span></div>
+      <div class="pair">
+        <figure><a href="https://web.archive.org/web/19990221011838if_/http://www.noaa.gov/rgthist.htm"><img src="compare/noaa-1999_2_original.jpg" alt="Original NOAA History" loading="lazy"></a><figcaption>Original (1999, Wayback Machine) <a href="https://web.archive.org/web/19990221011838if_/http://www.noaa.gov/rgthist.htm">open</a></figcaption></figure>
+        <figure><a href="entries/claude-code/noaa-1999/history.html"><img src="compare/noaa-1999_2_recreated.jpg" alt="Recreated NOAA History" loading="lazy"></a><figcaption>Recreated from the video <a href="entries/claude-code/noaa-1999/history.html">open</a></figcaption></figure>
+      </div>
+    </div>
+  </section>
+  <p class="muted" style="margin-top:48px">Code and method: <a href="https://github.com/Redaelm47/resurrection/tree/main/bench">github.com/Redaelm47/resurrection</a>. Captures of US federal government sites, public domain.</p>
+</main>
+</body>
+</html>
